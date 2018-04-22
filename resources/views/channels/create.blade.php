@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', "| Create channel")
 
 @section('content')
 
