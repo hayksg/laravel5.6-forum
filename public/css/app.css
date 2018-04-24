@@ -8,3 +8,7 @@
  .navbar-laravel {
      margin-bottom: 20px;
  }
+ 
+ .pagination {
+     justify-content: center !important;
+ }
