@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/forum') }}">
                     {{ config('app.name', 'Forum') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,5 +93,11 @@
         </div>
         
     </div>
+    <footer class="footer">
+        <hr>
+        <div class="container">
+            <p>© 2017 - {!! date('Y') !!} by PHP-User. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
