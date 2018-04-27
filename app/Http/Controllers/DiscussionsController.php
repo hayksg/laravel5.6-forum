@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Discussion;
+use App\Reply;
 
 class DiscussionsController extends Controller
 {
@@ -39,5 +40,21 @@ class DiscussionsController extends Controller
         $discussion = Discussion::where('slug', $slug)->first();
         
         return view('discussions.show')->with('discussion', $discussion);
+    }
+    
+    public function reply(Discussion $discussion)
+    {
+        $this->validate(request(), [
+            'reply'    => 'required|regex:/^[^<>]+$/u'
+        ]);
+        
+        $reply = Reply::create([
+            'user_id' => auth()->id(),
+            'discussion_id' => $discussion->id,
+            'content' => request('reply')
+        ]);
+        
+        session()->flash('success', 'Replied to discussion');
+        return back();
     }
 }
