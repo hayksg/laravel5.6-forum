@@ -62,6 +62,12 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            
+            a.app-forum-link {
+                text-decoration: none;
+                color: #636b6f;
+            }
+
         </style>
     </head>
     <body>
@@ -69,7 +75,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/forum') }}">Join</a>
+
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
@@ -79,7 +85,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Forum
+                    <a href="{{ url('/forum') }}" class="app-forum-link">Forum</a>
                 </div>
 
                 <div class="links">                   

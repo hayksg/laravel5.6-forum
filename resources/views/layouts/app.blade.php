@@ -79,9 +79,13 @@
                         <br>
                         <div class="card-header text-center">Channels</div>
                         <div class="card-body">
-                            @foreach($channels as $channel)
-                            <li class="list-group-item">{{ $channel->title }}</li>
-                            @endforeach
+                            <ul class="list-unstyled app-channels-list">
+                                @foreach($channels as $channel)
+                                <li class="list-group-item">
+                                    <a href="{{ route('channel', ['slug' => $channel->slug]) }}">{{ $channel->title }}</a>
+                                </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>

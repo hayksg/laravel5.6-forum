@@ -22,4 +22,25 @@ class Discussion extends Model
     {
         return $this->hasMany(Reply::class);
     }
+    
+    public function watchers()
+    {
+        return $this->hasMany(Watcher::class);
+    }
+    
+    public function is_being_watched_by_auth_user()
+    {
+        $userId = auth()->id();
+        $watchers_ids = [];
+        
+        foreach($this->watchers as $watcher) {
+            array_push($watchers_ids, $watcher->user_id);
+        }
+        
+        if (in_array($userId, $watchers_ids)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

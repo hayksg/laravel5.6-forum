@@ -43,3 +43,6 @@ body {
     line-height: 5;
 }
 
+.app-channels-list li a {
+    text-decoration: none;
+}
