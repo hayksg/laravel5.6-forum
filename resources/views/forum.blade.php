@@ -6,10 +6,14 @@
     @foreach($discussions as $discussion)
     <div class="card mb-3">
         
-        <div class="card-header">
+        <div class="card-header user-data">
             <img src="{{ $discussion->user->avatar }}" alt="img" width="50px" height="50px">
             &nbsp;&nbsp;
-            <span>{{ $discussion->user->name }}, <b>{{ $discussion->created_at->diffForHumans() }}</b></span>
+            <div>
+                {{ $discussion->user->name }}, 
+                <span class="badge badge-primary">has {{ $discussion->user->points }} points</span>
+                <br><b>{{ $discussion->created_at->diffForHumans() }}</b>
+            </div>
             <a href="{{ route('discussion', ['slug' => $discussion->slug]) }}" class="btn btn-outline-primary float-right">View</a>
         </div>
         <div class="card-body">

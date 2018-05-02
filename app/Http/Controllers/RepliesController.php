@@ -29,4 +29,16 @@ class RepliesController extends Controller
         Session::flash('success', 'You unliked the reply.');
         return back();
     }
+    
+    public function best_answer(Reply $reply)
+    {
+        $reply->best_answer = 1;
+        $reply->save();
+        
+        $reply->user->points += 100;
+        $reply->user->save();
+        
+        Session::flash('success', 'Replay has been marked as the best answer.');
+        return back();
+    }
 }

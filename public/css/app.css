@@ -34,6 +34,16 @@ body {
     left: 0;
 }
 
+.replies-count-page {
+    position: relative;
+ }
+ 
+.replies-count-page span {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -45,4 +55,25 @@ body {
 
 .app-channels-list li a {
     text-decoration: none;
+}
+
+span.the-best-answer {
+    display: inline-block;
+    float: right;
+    position: relative;
+}
+
+span.the-best-answer strong {
+    display: inline-block;
+    position: absolute;
+    top: 17px;
+    right: 0;
+}
+
+div.user-data img {
+    vertical-align: top;
+}
+
+div.user-data div {
+    display: inline-block;
 }

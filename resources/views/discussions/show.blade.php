@@ -4,15 +4,19 @@
 @section('content')
 
 <div class="card mb-3">
-    <div class="card-header">
+    <div class="card-header user-data">
         <img src="{{ $discussion->user->avatar }}" alt="img" width="50px" height="50px">
         &nbsp;&nbsp;
-        <span>{{ $discussion->user->name }}, <b>{{ $discussion->created_at->diffForHumans() }}</b></span>
+        <div>
+            {{ $discussion->user->name }}, 
+            <span class="badge badge-primary">has {{ $discussion->user->points }} points</span>
+            <br><b>{{ $discussion->created_at->diffForHumans() }}</b>
+        </div>
        
         @if($discussion->is_being_watched_by_auth_user())
-            <a href="{{ route('discussion.unwatch', ['discussion' => $discussion]) }}" class="btn btn-outline-primary float-right">Unwatch</a>
+            <a href="{{ route('discussion.unwatch', ['discussion' => $discussion]) }}" class="mt-1 btn btn-outline-primary float-right">Unwatch</a>
         @else
-            <a href="{{ route('discussion.watch', ['discussion' => $discussion]) }}" class="btn btn-outline-primary float-right">Watch</a>
+            <a href="{{ route('discussion.watch', ['discussion' => $discussion]) }}" class="mt-1 btn btn-outline-primary float-right">Watch</a>
         @endif 
         
     </div>
@@ -25,19 +29,32 @@
 <hr>
 
 <div class="mt-5 mb-4">
-    <p class="replies-count">
+    <h5 class="replies-count-page">
         <span class="badge badge-pill badge-primary">{{ $dc = $discussion->replies->count() }}</span> 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;              
         {{ $dc > 1 ? 'Replies' : 'Reply' }}
-    </p>
+    </h5>
 </div>
 
 @foreach($discussion->replies as $reply)
-<div class="card mb-3">
-    <div class="card-header">
+<div class="card mb-3">   
+    <div class="card-header user-data">
         <img src="{{ $reply->user->avatar }}" alt="img" width="50px" height="50px">
         &nbsp;&nbsp;
-        <span>{{ $reply->user->name }}, <b>{{ $reply->created_at->diffForHumans() }}</b></span>
+        <div>
+            {{ $reply->user->name }}, 
+            <span class="badge badge-primary">has {{ $reply->user->points }} points</span>
+            <br><b>{{ $reply->created_at->diffForHumans() }}</b>
+        </div>
+
+        @if(! $best_answer)
+            <a href="{{ route('discussion.best.answer', ['replay' => $reply]) }}" class="btn btn-outline-info btn-sm float-right mt-2">Mark as best reply</a>
+        @else
+            @if($reply->best_answer == 1)
+            <span class="the-best-answer"><strong class="fa fa-diamond" aria-hidden="true">&nbsp;The&nbsp;best&nbsp;answer</strong></span>
+            @endif
+        @endif
+        
     </div>
     <div class="card-body">
         <p>{{ $reply->content }}</p>
