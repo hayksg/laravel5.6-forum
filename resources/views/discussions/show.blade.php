@@ -48,7 +48,9 @@
         </div>
 
         @if(! $best_answer)
-            <a href="{{ route('discussion.best.answer', ['replay' => $reply]) }}" class="btn btn-outline-info btn-sm float-right mt-2">Mark as best reply</a>
+            @if(auth()->id() == $discussion->user->id)
+                <a href="{{ route('discussion.best.answer', ['replay' => $reply]) }}" class="btn btn-outline-info btn-sm float-right mt-2">Mark as best reply</a>
+            @endif
         @else
             @if($reply->best_answer == 1)
             <span class="the-best-answer"><strong class="fa fa-diamond" aria-hidden="true">&nbsp;The&nbsp;best&nbsp;answer</strong></span>

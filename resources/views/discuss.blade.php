@@ -12,8 +12,6 @@
                 {{ session('status') }}
             </div>
         @endif
-        
-<!--        @include('layouts.errors')-->
 
         <form action="{{ route('discussions.store') }}" method="post">
             
@@ -21,7 +19,13 @@
             
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" required>
+                <input type="text" 
+                       name="title" 
+                       id="title" 
+                       class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" 
+                       required
+                       value="{{ old('title') }}"
+                >
 
                 @if ($errors->has('title'))
                     <span class="invalid-feedback">
@@ -46,7 +50,12 @@
             
             <div class="form-group">
                 <label for="content">Ask a question</label>
-                <textarea name="content" id="content" cols="30" rows="10" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" required></textarea>
+                <textarea name="content" 
+                          id="content" 
+                          cols="30" 
+                          rows="10" 
+                          class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" 
+                          required>{{ old('content') }}</textarea>
                 @if ($errors->has('content'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('content') }}</strong>
