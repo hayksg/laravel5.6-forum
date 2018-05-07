@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <a class="nav-link" href="{{ route('channels.index') }}">Edit channels</a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,8 +74,16 @@
                         <a href="{{ route('discussions.create') }}" class="btn btn-lg btn-primary">
                             Create a new discussion
                         </a>
-                        <br>
-                        <div class="card-header text-center">Channels</div>
+                        
+                        <div class="card-body">
+                            <ul class="list-unstyled app-channels-list">
+                                <li class="list-group-item"><a href="/forum?filter=me">My discussions</a></li>
+                                <li class="list-group-item"><a href="/forum?filter=solved">Answered discussions</a></li>
+                                <li class="list-group-item"><a href="/forum?filter=unsolved">Unanswered discussions</a></li>
+                            </ul>
+                        </div>
+                        
+                        <h5 class="card-header text-center"><strong>Channels</strong></h5>
                         <div class="card-body">
                             <ul class="list-unstyled app-channels-list">
                                 @foreach($channels as $channel)
@@ -88,9 +96,7 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-
-                        @yield('content')
-
+                    @yield('content')
                 </div>
             </div>
         </div>

@@ -4,7 +4,10 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header">Channels</div>
+    <div class="card-header">
+        <h5 class="medium-title mt-2">Channels</h5>
+        <a href="{{ route('channels.create') }}" class="btn btn-outline-info float-right">Create channel</a>
+    </div>
 
     <div class="card-body">
         <table class="table table-hover">
