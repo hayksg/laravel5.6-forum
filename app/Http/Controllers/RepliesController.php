@@ -41,5 +41,28 @@ class RepliesController extends Controller
         Session::flash('success', 'Replay has been marked as the best answer.');
         return back();
     }
+    
+    public function edit(Reply $reply)
+    {
+        return view('replies.edit', compact('reply'));
+    }
+    
+    public function update(Reply $reply)
+    {
+        /*
+        $this->validate(request(), [
+            'content'    => 'required|regex:/^[^<>]+$/u'
+        ]);        
+        */
+        
+        $this->validate(request(), [
+            'content'    => 'required|regex:/^[^<>]+$/u'
+        ]);
+        
+        $reply->content = request('content');
+        $reply->save();
+        
+        Session::flash('success', 'Replay updated.');
+        return redirect()->route('discussion', ['slug' => $reply->discussion->slug]);
+    }
 }
-

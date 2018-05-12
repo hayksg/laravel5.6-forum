@@ -14,7 +14,23 @@
                 <span class="badge badge-primary">has {{ $discussion->user->points }} points</span>
                 <br><b>{{ $discussion->created_at->diffForHumans() }}</b>
             </div>
-            <a href="{{ route('discussion', ['slug' => $discussion->slug]) }}" class="btn btn-outline-primary float-right">View</a>
+
+            <div class="float-right">
+                <div class="display-block">
+                    <a href="{{ route('discussion', ['slug' => $discussion->slug]) }}" 
+                        class="btn btn-sm btn-outline-primary">
+                         View
+                    </a>
+                </div>
+                <div class="display-block text-center">
+                @if($discussion->hasBestAnswer())
+                    <span class="badge badge-info">Closed</span>
+                @else
+                    <span class="badge badge-info">Open</span>
+                @endif
+                </div>
+            </div>
+            
         </div>
         <div class="card-body">
             <h5><strong>{{ $discussion->title }}</strong></h5>

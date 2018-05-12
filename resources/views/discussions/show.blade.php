@@ -12,17 +12,37 @@
             <span class="badge badge-primary">has {{ $discussion->user->points }} points</span>
             <br><b>{{ $discussion->created_at->diffForHumans() }}</b>
         </div>
-       
-        @if($discussion->is_being_watched_by_auth_user())
-            <a href="{{ route('discussion.unwatch', ['discussion' => $discussion]) }}" class="mt-1 btn btn-outline-primary float-right">Unwatch</a>
-        @else
-            <a href="{{ route('discussion.watch', ['discussion' => $discussion]) }}" class="mt-1 btn btn-outline-primary float-right">Watch</a>
-        @endif 
+        
+        <div class="float-right">
+            <div class="display-block">
+                @if($discussion->is_being_watched_by_auth_user())
+                    <a href="{{ route('discussion.unwatch', ['discussion' => $discussion]) }}" class="mt-1 btn btn-outline-primary btn-sm">Unwatch</a>
+                @else
+                    <a href="{{ route('discussion.watch', ['discussion' => $discussion]) }}" class="mt-1 btn btn-outline-primary btn-sm">Watch</a>
+                @endif 
+            </div>
+            
+            <div class="display-block text-center">
+            @if($discussion->hasBestAnswer())
+                <span class="badge badge-info">Closed</span>
+            @else
+                <span class="badge badge-info">Open</span>
+            @endif
+            </div>
+        </div>
         
     </div>
     <div class="card-body">
         <h5><strong>{{ $discussion->title }}</strong></h5>
-        <p>{{ $discussion->content }}</p>
+        <!-- <p>{{ $discussion->content }}</p> -->
+        <p>{!! Markdown::convertToHtml($discussion->content) !!}</p>
+    </div>
+    <div class="card-footer text-right">
+        @if(auth()->id() == $discussion->user->id)
+            @if(! $discussion->hasBestAnswer())
+            <a href="{{ route('discussion.edit', ['slug' => $discussion->slug]) }}" class="mt-1 btn btn-info btn-sm">Edit</a>
+            @endif
+        @endif
     </div>
 </div>
 
@@ -49,7 +69,7 @@
 
         @if(! $best_answer)
             @if(auth()->id() == $discussion->user->id)
-                <a href="{{ route('discussion.best.answer', ['replay' => $reply]) }}" class="btn btn-outline-info btn-sm float-right mt-2">Mark as best reply</a>
+                <a href="{{ route('discussion.best.answer', ['reply' => $reply]) }}" class="btn btn-outline-info btn-sm float-right mt-2">Mark as best answer</a>
             @endif
         @else
             @if($reply->best_answer == 1)
@@ -57,9 +77,18 @@
             @endif
         @endif
         
+        @if(auth()->id() == $reply->user->id)
+        
+            @if(! $reply->best_answer)
+                <a href="{{ route('reply.edit', ['reply' => $reply]) }}" class="btn btn-outline-primary btn-sm float-right mt-2 mr-2">Edit</a>
+            @endif
+        
+        @endif
+        
     </div>
     <div class="card-body">
-        <p>{{ $reply->content }}</p>
+    <!-- <p>{{ $reply->content }}</p> -->
+        <p>{!! Markdown::convertToHtml($reply->content) !!}</p>
     </div>
     <div class="card-footer">
         @if ($reply->is_liked_by_auth_user())

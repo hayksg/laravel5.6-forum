@@ -34,6 +34,9 @@ Route::get('discussion/{slug}', [
 
 Route::get('channel/{slug}', 'ForumsController@channel')->name('channel');
 
+Route::get('/reply/edit/{reply}', 'RepliesController@edit')->name('reply.edit');
+Route::post('/reply/update/{reply}', 'RepliesController@update')->name('reply.update');
+
 Route::group(['middleware' => 'auth'], function(){
     Route::resource('channels', 'ChannelController');
     
@@ -59,4 +62,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/discussion/watch/{discussion}', 'WatchersController@watch')->name('discussion.watch');
     Route::get('/discussion/unwatch/{discussion}', 'WatchersController@unwatch')->name('discussion.unwatch');
     Route::get('/discussion/best/reply/{reply}', 'RepliesController@best_answer')->name('discussion.best.answer');
+    
+    Route::get('/discussion/edit/{slug}', 'DiscussionsController@edit')->name('discussion.edit');
+    Route::post('/discussion/update/{discussion}', 'DiscussionsController@update')->name('discussion.update');
 });

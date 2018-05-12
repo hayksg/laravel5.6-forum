@@ -37,7 +37,8 @@
             </div>
             <div class="card-body">
                 <h5><strong>{{ $discussion->title }}</strong></h5>
-                <p>{{ str_limit($discussion->content, 250) }}</p>
+                <!-- <p>{{ str_limit($discussion->content, 250) }}</p> -->
+                <p>{!! Markdown::convertToHtml($discussion->content) !!}</p>
             </div>
             <div class="card-footer">
                 <p class="replies-count">

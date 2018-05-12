@@ -19,10 +19,20 @@ class DiscussionsController extends Controller
     {
         $r = request();
         
+        /*
+        
         $this->validate($r, [
             'channel_id' => 'required|integer',
             'title'      => 'required|regex:/^[^<>]+$/u',
             'content'    => 'required|regex:/^[^<>]+$/u'
+        ]);
+         
+        */
+        
+        $this->validate($r, [
+            'channel_id' => 'required|integer',
+            'title'      => 'required',
+            'content'    => 'required'
         ]);
         
         $discussion = Discussion::create([
@@ -53,8 +63,14 @@ class DiscussionsController extends Controller
     
     public function reply(Discussion $discussion)
     {
+        /*
         $this->validate(request(), [
             'reply'    => 'required|regex:/^[^<>]+$/u'
+        ]);       
+        */
+    
+        $this->validate(request(), [
+            'reply'    => 'required'
         ]);
         
         $reply = Reply::create([
@@ -78,5 +94,32 @@ class DiscussionsController extends Controller
         
         session()->flash('success', 'Replied to discussion');
         return back();
+    }
+    
+    public function edit($slug)
+    {
+        $discussion = Discussion::where('slug', $slug)->first();
+        return view('discussions.edit', ['discussion' => $discussion]);
+    }
+    
+    public function update(Discussion $discussion)
+    {
+        /*
+         
+        $this->validate(request(), [
+            'content'    => 'required|regex:/^[^<>]+$/u'
+        ]);
+        
+        */
+        
+        $this->validate(request(), [
+            'content'    => 'required'
+        ]);
+        
+        $discussion->content = request('content');
+        $discussion->save();
+        
+        session()->flash('success', 'Discussion updated');
+        return redirect()->route('discussion', ['slug' => $discussion->slug]);
     }
 }
