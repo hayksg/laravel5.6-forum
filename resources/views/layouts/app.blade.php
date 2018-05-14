@@ -38,7 +38,9 @@
                     @if(Auth::check())
                         @if(Auth::user()->admin)
                             <ul class="navbar-nav mr-auto">
-                                <a class="nav-link" href="{{ route('channels.index') }}">Manage channels</a>
+                                <li id="manage-channels">
+                                    <a class="nav-link" href="{{ route('channels.index') }}">Manage channels</a>
+                                </li>
                             </ul>
                         @endif
                     @endif
@@ -83,7 +85,7 @@
                         </a>
                         
                         <div class="card-body">
-                            <ul class="list-unstyled app-channels-list">
+                            <ul class="list-unstyled app-channels-list" id="my-discussions-ul">
                                 <li class="list-group-item"><a href="/forum?filter=me">My discussions</a></li>
                                 <li class="list-group-item"><a href="/forum?filter=solved">Answered discussions</a></li>
                                 <li class="list-group-item"><a href="/forum?filter=unsolved">Unanswered discussions</a></li>
@@ -91,7 +93,7 @@
                         </div>
                         
                         <h5 class="card-header text-center"><strong>Channels</strong></h5>
-                        <div class="card-body">
+                        <div class="card-body" id="channels">
                             <ul class="list-unstyled app-channels-list">
                                 @foreach($channels as $channel)
                                 <li class="list-group-item">
@@ -127,7 +129,7 @@
         });
     </script>
     
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="/js/app-script.js"></script>
     <script>
         $(function(){
             @if(Session::has('success'))

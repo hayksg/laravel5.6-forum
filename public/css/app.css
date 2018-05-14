@@ -86,3 +86,7 @@ div.user-data div {
     display: inline-block;
     font-weight: bold;
 }
+
+.highlight {
+	color: #d00 !important;
+}
