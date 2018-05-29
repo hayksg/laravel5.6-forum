@@ -49,14 +49,8 @@ class RepliesController extends Controller
     
     public function update(Reply $reply)
     {
-        /*
         $this->validate(request(), [
-            'content'    => 'required|regex:/^[^<>]+$/u'
-        ]);        
-        */
-        
-        $this->validate(request(), [
-            'content'    => 'required|regex:/^[^<>]+$/u'
+            'content'    => 'required'
         ]);
         
         $reply->content = request('content');

@@ -16,10 +16,10 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css" rel="stylesheet" type="text/css">
-    
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-filestyle.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -52,6 +52,8 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                            
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -114,7 +116,7 @@
     <footer class="footer">
         <hr>
         <div class="container">
-            <p>© 2017 - {!! date('Y') !!} by PHP-User. All rights reserved.</p>
+            <p>© 2017 - {!! date('Y') !!} by PHP-User.</p>
         </div>
     </footer>
     
@@ -122,14 +124,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" defer></script>
-    
-    <script>
-        $(function(){
-            hljs.initHighlightingOnLoad();
-        });
-    </script>
-    
-    <script src="/js/app-script.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
     <script>
         $(function(){
             @if(Session::has('success'))
@@ -137,5 +133,8 @@
             @endif
         });
     </script>
+
+    <script src="/js/jquery-filestyle.min.js"></script>
+    <script src="/js/app-script.js"></script>
 </body>
 </html>

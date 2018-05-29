@@ -59,7 +59,7 @@
 @foreach($discussion->replies as $reply)
 <div class="card mb-3">   
     <div class="card-header user-data">
-        <img src="{{ $reply->user->avatar }}" alt="img" width="50px" height="50px">
+        <img src="{{ $reply->user->avatar }}" alt="image" width="50px" height="50px">
         &nbsp;&nbsp;
         <div>
             {{ $reply->user->name }}, 

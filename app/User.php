@@ -14,9 +14,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $fillable = ['name', 'email', 'password', 'avatar'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -35,5 +33,10 @@ class User extends Authenticatable
     public function watchers()
     {
         return $this->hasMany(Watcher::class);
+    }
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
     }
 }

@@ -21,7 +21,8 @@ class ChannelController extends Controller
      */
     public function index()
     {
-        return view('channels.index')->with('channels', Channel::all());
+        $channels = Channel::all();
+        return view('channels.index')->with('channels', $channels);
     }
 
     /**

@@ -19,16 +19,6 @@ class DiscussionsController extends Controller
     {
         $r = request();
         
-        /*
-        
-        $this->validate($r, [
-            'channel_id' => 'required|integer',
-            'title'      => 'required|regex:/^[^<>]+$/u',
-            'content'    => 'required|regex:/^[^<>]+$/u'
-        ]);
-         
-        */
-        
         $this->validate($r, [
             'channel_id' => 'required|integer',
             'title'      => 'required',
@@ -63,12 +53,6 @@ class DiscussionsController extends Controller
     
     public function reply(Discussion $discussion)
     {
-        /*
-        $this->validate(request(), [
-            'reply'    => 'required|regex:/^[^<>]+$/u'
-        ]);       
-        */
-    
         $this->validate(request(), [
             'reply'    => 'required'
         ]);

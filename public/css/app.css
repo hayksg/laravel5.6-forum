@@ -90,3 +90,8 @@ div.user-data div {
 .highlight {
 	color: #d00 !important;
 }
+
+.file-error {
+	font-size: 80%;
+    color: #dc3545;
+}

@@ -37,7 +37,9 @@ $(function(){
     if (pathname + search == '/forum?filter=unsolved') {
         $('#my-discussions-ul > li > a[href="/forum?filter=unsolved"]').addClass('highlight');
     }
-
 	// End block
+
+	// For markdown highlight
+	hljs.initHighlightingOnLoad();
 
 });
