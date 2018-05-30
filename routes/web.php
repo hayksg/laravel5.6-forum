@@ -64,3 +64,5 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/discussion/edit/{slug}', 'DiscussionsController@edit')->name('discussion.edit');
     Route::post('/discussion/update/{discussion}', 'DiscussionsController@update')->name('discussion.update');
 });
+
+Route::get('/portfolio', 'PortfolioController@index')->name('portfolio');

@@ -60,39 +60,12 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-
-                    <div class="card">
-                        <a href="{{ route('discussions.create') }}" class="btn btn-lg btn-primary">
-                            Create a new discussion
-                        </a>
-                        
-                        <div class="card-body">
-                            <ul class="list-unstyled app-channels-list" id="my-discussions-ul">
-                                <li class="list-group-item"><a href="/forum?filter=me">My discussions</a></li>
-                                <li class="list-group-item"><a href="/forum?filter=solved">Answered discussions</a></li>
-                                <li class="list-group-item"><a href="/forum?filter=unsolved">Unanswered discussions</a></li>
-                            </ul>
-                        </div>
-                        
-                        <h5 class="card-header text-center"><strong>Channels</strong></h5>
-                        <div class="card-body" id="channels">
-                            <ul class="list-unstyled app-channels-list">
-                                @foreach($channels as $channel)
-                                <li class="list-group-item">
-                                    <a href="{{ route('channel', ['slug' => $channel->slug]) }}">{{ $channel->title }}</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     @yield('content')
                 </div>
             </div>
         </div>
         
     </div>
-
+    
 @include('layouts.footer')

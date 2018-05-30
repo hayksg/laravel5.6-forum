@@ -16,7 +16,7 @@ $(function(){
 		}
 	});
 
-	$('#manage-channels a').each(function(){
+	$('.top-links a').each(function(){
 		var href = $(this).attr('href');
 		
 		if ( (href == jshref) ) {
