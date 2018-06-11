@@ -15,7 +15,7 @@ class ForumsController extends Controller
         switch (request('filter')) {
             case 'me':
                 $discussions = Discussion::where('user_id', auth()->id())->orderBy('created_at', 'DESC')->paginate(3);
-                $discussions->withPath('forum?filter=me');
+                $discussions->withPath(url('/') . 'forum?filter=me');
                 break;
             case 'solved':
                 $answered = [];
@@ -27,7 +27,7 @@ class ForumsController extends Controller
                 }
                 
                 $discussions = $this->paginate($answered, 3);
-                $discussions->withPath('forum?filter=solved');
+                $discussions->withPath(url('/') . 'forum?filter=solved');
                 break;
             case 'unsolved':
                 $unsolved = [];
@@ -39,8 +39,7 @@ class ForumsController extends Controller
                 }
                 
                 $discussions = $this->paginate($unsolved, 3);
-                $discussions->withPath('forum?filter=unsolved');
-
+                $discussions->withPath(url('/') . '/forum?filter=unsolved');
                 break;
             default:
                 $discussions = Discussion::orderBy('created_at', 'desc')->paginate(3);

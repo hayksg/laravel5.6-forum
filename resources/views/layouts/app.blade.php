@@ -69,9 +69,9 @@
                         
                         <div class="card-body">
                             <ul class="list-unstyled app-channels-list" id="my-discussions-ul">
-                                <li class="list-group-item"><a href="/forum?filter=me">My discussions</a></li>
-                                <li class="list-group-item"><a href="/forum?filter=solved">Answered discussions</a></li>
-                                <li class="list-group-item"><a href="/forum?filter=unsolved">Unanswered discussions</a></li>
+                                <li class="list-group-item"><a href="{{ url('/') }}/forum?filter=me">My discussions</a></li>
+                                <li class="list-group-item"><a href="{{ url('/') }}/forum?filter=solved">Answered discussions</a></li>
+                                <li class="list-group-item"><a href="{{ url('/') }}/forum?filter=unsolved">Unanswered discussions</a></li>
                             </ul>
                         </div>
                         

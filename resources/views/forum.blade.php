@@ -51,7 +51,7 @@
         </div>
         @endforeach
     
-        <div class="text-center my-5 justify-content-center text-center">
+        <div class="my-5">
             {{ $discussions->links() }}
         </div>
     @endif

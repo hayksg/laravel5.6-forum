@@ -1,8 +1,6 @@
 $(function(){
 
 	// Highlighting menu
-	var pathname = window.location.pathname;
-	var search = window.location.search;
 	var jshref = window.location.href;
 	var href = '';
 	   
@@ -26,17 +24,16 @@ $(function(){
 		}
 	});
 
-	if (pathname + search == '/forum?filter=me') {
-        $('#my-discussions-ul > li > a[href="/forum?filter=me"]').addClass('highlight');
-    }
+	var discussionsLinksLength = $('#my-discussions-ul > li > a').length;
 
-    if (pathname + search == '/forum?filter=solved') {
-        $('#my-discussions-ul > li > a[href="/forum?filter=solved"]').addClass('highlight');
-    }
+	for (var i = 0; i < discussionsLinksLength; i++) {
+		var dHref = $('#my-discussions-ul > li > a').eq(i).attr('href');
+		var jshrefSplited = jshref.split('&');
 
-    if (pathname + search == '/forum?filter=unsolved') {
-        $('#my-discussions-ul > li > a[href="/forum?filter=unsolved"]').addClass('highlight');
-    }
+		if (dHref === jshrefSplited[0]) {
+			$('#my-discussions-ul > li > a').eq(i).addClass('highlight');
+		}
+	}
 	// End block
 
 	// For markdown highlight
