@@ -45,6 +45,10 @@ class ForumsController extends Controller
                 $discussions = Discussion::orderBy('created_at', 'desc')->paginate(3);
                 break;
         }
+
+        if (! $this->isPaginationPageExistsInUrl($discussions )) {
+            return view('errors.404');
+        }
         
         return view('forum', compact('discussions'));
     }
